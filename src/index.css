@@ -1,0 +1,20 @@
+@font-face {
+  font-family: Multiround;
+  src: url(/src/font/MultiroundPro/MultiroundPro.otf);
+}  
+@font-face{
+  font-family: Inter;
+  src: url(/src/font/Inter/Inter.ttf);
+}
+.columnBtn{
+  text-decoration: none;
+}
+span{
+  font-family: Multiround;
+}
+.columnLable{
+  font-family: Multiround;
+}
+.textFooter{
+  font-family: Inter;
+}

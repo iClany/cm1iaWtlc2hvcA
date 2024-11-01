@@ -5,7 +5,6 @@ function App () {
     return( 
         <div className="wrapped">
             <Header />
-                
             <Footer />
         </div>
     );
