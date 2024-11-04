@@ -26,7 +26,7 @@ export default function Footer() {
           <ul className='twoColumn'>
             <label className='columnLable'>Для покупателей</label>
             <li className='columnBtn'>
-              <a href='/shipping'>Доставка</a>
+              <a href='/shipping'>Условия доставки</a>
             </li>
             <li className='columnBtn'>
               <a href='/payments'>Оплата и рассрочка</a>
