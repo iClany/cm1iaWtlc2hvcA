@@ -1,0 +1,33 @@
+main{
+    display: grid;
+    justify-content: center;
+}
+h6{
+    margin: 0;
+}
+form{
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+}
+#shortdesc {
+    height: 50px; 
+    resize: none;
+} 
+#longdesc {
+    width: 100%;
+    resize: none;
+    max-height: 200px;
+   -off-padding:0
+  }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

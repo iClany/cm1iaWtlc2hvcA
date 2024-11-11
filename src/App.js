@@ -1,13 +1,14 @@
+import React from "react";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 
-function Navigation () {
-    return( 
-        <div className="wrapped">
-            <Header />
-            <Footer />
-        </div>
-    );
-}
+function App(){
+        return( 
+            <div className="wrapped">
+                <Header />
+                <Footer />
+            </div>
+        )
+    }
 
-export default Navigation;
+export default App;

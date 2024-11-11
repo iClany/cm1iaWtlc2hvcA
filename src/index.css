@@ -1,20 +1,33 @@
 @font-face {
   font-family: Multiround;
-  src: url(/src/font/MultiroundPro/MultiroundPro.otf);
+  src: url(/public/font/MultiroundPro/MultiroundPro.otf);
 }  
 @font-face{
   font-family: Inter;
-  src: url(/src/font/Inter/Inter.ttf);
+  src: url(/public/font/Inter/Inter.ttf);
 }
-.columnBtn{
+:root{
+  --black: #212121;
+  --primary: #FFD101;
+  --no-active: #F4F4F4;
+  --footer-color: #DDDDDD3D;
+}
+body{
+  margin-top: 10px;
+}
+a{
+  color: var(--black);
   text-decoration: none;
 }
-span{
-  font-family: Multiround;
+footer, header{
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
 }
-.columnLable{
-  font-family: Multiround;
+ul{
+  padding: 0;
+  margin: 0;
 }
-.textFooter{
-  font-family: Inter;
+li{
+  list-style-type: none;
 }

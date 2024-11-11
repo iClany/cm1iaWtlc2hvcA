@@ -1,0 +1,87 @@
+/* Header top section */
+    .headerTop{
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1320px;
+        height: 80px;
+        border-radius: 20px;
+        background: var(--primary);
+    }
+    .logo{
+        margin: 10px 0px 10px 20px;
+        height: 60px;
+        width: 60px;
+    }
+    .headerButtons{
+        margin: 10px 20px 10px 0px;
+    }
+    .headerButtons{
+        font-family: 'Inter';
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .phoneBtn, .locationBtn{
+        height: 80px;
+        opacity: 0.6;
+        transition: 100ms;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .phoneBtn:hover, .locationBtn:hover{
+        cursor: pointer;
+        transition: 100ms;
+        opacity: 1;
+    }
+    .phoneBtn{
+        margin-right: 40px;
+    }
+    .iconPhone, .iconLocation{
+        margin-right: 10px;
+    }
+/* /Header top section */
+
+/* header bottom section */
+.headerBottom{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1320px;
+    height: 60px;
+}
+.navMenu {
+    display: inline-flex;
+    padding: 0 20px 0 20px;
+}
+.navbtn{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 10px 7.5px 10px 7.5px;
+    list-style-type: none;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Multiround';
+    color: #808080;
+    transition: 100ms;
+}
+.navbtn:hover{
+    color: var(--black);
+    transition: 100ms;
+}
+.iconsBtn{
+    padding: 0  20px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.navicons{
+    opacity: 0.6;
+    transition: 100ms;
+}
+.navicons:hover{
+    opacity: 1;
+    transition: 100ms;
+}
+/* /header bottom section */
