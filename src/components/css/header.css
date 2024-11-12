@@ -79,7 +79,7 @@
 .navicons{
     opacity: 0.6;
     transition: 100ms;
-}s
+}
 .navicons:hover{
     opacity: 1;
     transition: 100ms;
