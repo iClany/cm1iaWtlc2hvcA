@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 
-function App(){
+function Main(){
         return( 
             <div className="wrapped">
                 <Header />
@@ -11,4 +11,4 @@ function App(){
         )
     }
 
-export default App;
+export default Main;
