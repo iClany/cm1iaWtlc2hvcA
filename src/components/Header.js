@@ -1,11 +1,11 @@
 import React from 'react'
-import '../css/header.css'
+import '../index.css'
 
 export default function Header() {
   return (
     <header>
         <div className='headerTop'>
-            <a href='https://rmbike.by/'>
+            <a className='logo' href='https://rmbike.by/'>
                 <img className='logo' alt='Логотип компании RMBike.by' src='/img/logo/logo-header.svg'></img>
             </a>
                 <div className='headerButtons'>
@@ -18,9 +18,28 @@ export default function Header() {
                         г.Гомель, ул. Катунина д. 5
                     </a>
                 </div>
+
+            {/* <div className="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label className="menu__btn" htmlFor="menu__toggle">
+                <span></span>
+                </label>
+                <ul className="menu__box">
+                    <li><a className="menu__item" href="/home">Главная</a></li>
+                    <li><a className="menu__item" href="/catalog/bycicle">Велосипеды</a></li>
+                    <li><a className="menu__item" href="/catalog/parts">запчасти</a></li>
+                    <li><a className="menu__item" href="/catalog/protection">защита</a></li>
+                    <li><a className="menu__item" href="/catalog/accsessories">аксессуары</a></li>
+                    <li><a className="menu__item" href="/catalog/sale">скидки</a></li>
+                    <li><a className="menu__item" href="/1">позвонить нам</a></li>
+                </ul>
+            </div> */}
+
+
+
         </div>
-        <div className='nav'>
-            <nav className='headerBottom'>
+                
+        <nav className='headerBottom'>
                 <ul className='navMenu'>
                     <a className='navbtn' href='/catalog/bycicle'>
                         <li>Велосипеды</li>
@@ -49,8 +68,35 @@ export default function Header() {
                         <img alt='Иконка входа в аккаунт' src='/img/icon/user.svg' title='Вход в аккаунт'></img>
                     </a>
                 </div>
-            </nav>
-        </div>
+        </nav>
+        <nav className='mobileBottomNav'>
+            <ul className='mobile__list'>
+                <li>
+                    <a className='nav__link' href='/login'>
+                        <img src='/img/icon/mobile-icons/login.svg' alt='Иконка входа в аккаунт'/>
+                        Аккаунт
+                    </a>
+                </li>
+                <li>
+                    <a className='nav__link' href='/cart'>
+                        <img src='/img/icon/mobile-icons/cart.svg' alt='Иконка корзины'/>
+                        Корзина
+                    </a>
+                </li>
+                <li>
+                    <a className='nav__link' href='/search'>
+                        <img src='/img/icon/mobile-icons/search.svg' alt='Иконка поиска'/>
+                        Поиск
+                    </a>
+                </li>
+                <li>
+                    <a className='nav__link' href='/catalog'>
+                        <img src='/img/icon/mobile-icons/catalog.svg' alt='Иконка каталога'/>
+                        Каталог
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
   )
 }
