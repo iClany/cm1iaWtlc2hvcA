@@ -12,6 +12,10 @@
   --no-active: #F4F4F4;
   --footer-color: #DDDDDD3D;
 }
+main{
+  max-width: 1320px;
+  margin: auto;
+}
 body{
   margin-top: 10px;
 }
@@ -255,12 +259,15 @@ li{
   opacity: 1;
   transition: 100ms;
 }
+.mobileBottomNav{
+  display: none;
+}
 /* /header bottom section */
 
 /* footer colums  */
 .topFooter{
   display: flex;
-  
+  flex-wrap: wrap;
 }
 .columnLabel{
   font-family: 'Multiround';
@@ -300,7 +307,8 @@ li{
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {/* Header top section */
+@media only screen and (min-width: 1200px) {
+  /* Header top section */
   .headerTop{
       display: inline-flex;
       justify-content: space-between;
@@ -385,11 +393,14 @@ li{
   opacity: 1;
   transition: 100ms;
 }
+.mobileBottomNav{
+  display: none;
+}
 /* /header bottom section */
 /* footer colums  */
 .topFooter{
   display: flex;
-  
+  flex-direction: column;
 }
 .columnLabel{
   font-family: 'Multiround';
