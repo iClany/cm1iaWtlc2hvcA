@@ -1,13 +1,13 @@
 import {Helmet} from 'react-helmet';
 
-const NamePage = () => {
+const WarrantyPage = () => {
     return(
         <main>
             <Helmet>
-                <title>Доставка | Веломагазин RMBike.by</title>
+                <title>Гарантия | Веломагазин RMBike.by</title>
             </Helmet>
         </main>
     )
 }
 
-export {NamePage}
+export {WarrantyPage}

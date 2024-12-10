@@ -4,7 +4,7 @@ const NamePage = () => {
     return(
         <main>
             <Helmet>
-                <title>Доставка | Веломагазин RMBike.by</title>
+                <title>Поиск | Веломагазин RMBike.by</title>
             </Helmet>
         </main>
     )

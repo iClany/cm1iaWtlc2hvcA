@@ -1,13 +1,13 @@
 import {Helmet} from 'react-helmet';
 
-const NamePage = () => {
+const CartPage = () => {
     return(
         <main>
             <Helmet>
-                <title>Доставка | Веломагазин RMBike.by</title>
+                <title>Корзина | Веломагазин RMBike.by</title>
             </Helmet>
         </main>
     )
 }
 
-export {NamePage}
+export {CartPage}

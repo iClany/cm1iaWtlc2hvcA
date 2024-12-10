@@ -4,10 +4,10 @@ const NamePage = () => {
     return(
         <main>
             <Helmet>
-                <title>Доставка | Веломагазин RMBike.by</title>
+                <title>Адрес магазина | Веломагазин RMBike.by</title>
             </Helmet>
         </main>
     )
 }
 
-export {NamePage}
+export {ShopAddressPage}
