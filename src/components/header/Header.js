@@ -23,7 +23,7 @@ export default function Header() {
                     <a className='navbtn' href='/catalog/accsessories'><li>Аксессуары</li></a>
                     <a className='navbtn' href='/catalog/sale'><li>Скидки</li></a>
                 </ul>
-                <div className='iconsBtn'>
+                <div className='iconsBtn    '>
                     <a className='navicons' href='/search'><img alt='Иконка поиска товаров' src='/img/icon/search.svg' title='Поиск товаров'></img></a>
                     <a className='navicons' href='/cart'><img alt='Иконка корзины товара' src='/img/icon/cart.svg' title='Корзина товаров'></img></a>
                     <a className='navicons' href='/login'><img alt='Иконка входа в аккаунт' src='/img/icon/user.svg' title='Вход в аккаунт'></img></a>

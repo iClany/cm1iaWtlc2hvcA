@@ -16,6 +16,9 @@
     align-items: center;
     height: 3.75rem;
   }
+  .mobileNavIcons{
+    height: 24px;
+  }
   .nav__link{
     display: flex;
     flex-direction: column;
@@ -27,7 +30,7 @@
       /* text */
         text-align: center;
         font-family: Multiround;
-        font-size: 12px;
+        font-size: 10px;
       /* /text */
   }
   .nav__link:hover{

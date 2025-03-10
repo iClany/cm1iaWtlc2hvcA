@@ -23,13 +23,12 @@ a{
   color: var(--black);
   text-decoration: none;
 }
-footer{
-  display: flex;
-  flex-wrap: wrap;
-  background-color: var(--footer-color);
-  padding: 25px 45px 45px 45px;
-  min-width: 81.35%;
-  border-radius: 25px;
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style-type: none;
 }
 header{
   display: flex;
@@ -37,12 +36,14 @@ header{
   align-items: center;
   flex-direction: column;
 }
-ul{
-  padding: 0;
-  margin: 0;
-}
-li{
-  list-style-type: none;
+footer{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--footer-color);
+  margin-top: 20px;
+  padding: 25px 45px 45px 45px;
+  width: 81.35%;
+  border-radius: 25px;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -72,6 +73,31 @@ li{
         left: -1000px;
       }
   /* /Header */
+  
+
+  /* Footer */
+        footer{
+          width: auto;
+          margin: 1.25rem 0rem 8rem;
+          padding: 25px;
+        }
+        .textFooter{
+          font-family: Inter;
+          font-size: 10px;
+        }
+
+        .paymentsInfo{
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          margin-top: 10px;
+        }
+        /* disabled elements */
+      .ulFooter{
+        display: none;
+      }
+  /* /Footer */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -130,6 +156,7 @@ li{
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   /* Header top section */
+  
   .headerTop{
       display: inline-flex;
       justify-content: space-between;
@@ -260,5 +287,8 @@ li{
   justify-content: center;
   width: 81.35%;
   margin-top: 10px;
+}
+.mobileAccordion{
+  display: none;
 }
 }

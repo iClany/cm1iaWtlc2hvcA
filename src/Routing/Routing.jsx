@@ -11,6 +11,8 @@ import { Routes , Route, Navigate } from "react-router-dom";
         //     import { CatalogSale } from "../page/sale/sale.jsx";
     // import { SearchPage } from "../page/search/search.jsx";
     // import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
+    import {LoginPage} from '../page/auth/login/login.jsx'
+    import {ResetPasswordPage} from '../page/auth/resetpass/resetpass.jsx'
     import {Terms} from "../page/terms/terms-page.jsx";
     import {Error404Page} from "../page/404-page/404-page.jsx";
 
@@ -31,6 +33,7 @@ import { Routes , Route, Navigate } from "react-router-dom";
                 {/* <Route path="/useragreement" element={</>}/> */}
                 {/* <Route path="/payments" element={</>}/> */}
                 {/* <Route path="/shipping" element={</>}/> */}
+                
                 <Route path="/terms" element={<Terms/>}/>
                 {/* <Route path="/" element={</>}/> */}
                 {/* <Route path="/" element={</>}/> */}
@@ -38,6 +41,10 @@ import { Routes , Route, Navigate } from "react-router-dom";
                 {/* <Route path="/" element={</>}/> */}
                 {/* <Route path="/" element={</>}/> */}
                 {/* <Route path="/" element={</>}/> */}
+
+                        {/* Authorization system */}
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/reset" element={<ResetPasswordPage/>}/>
                 <Route path="/404" element={<Error404Page/>} />
                 <Route path="*" element={ <Navigate to="/404" replace />} />
             </Routes>

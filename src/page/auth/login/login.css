@@ -1,0 +1,38 @@
+.login{
+    display: flex;  
+    flex-direction: column;
+}
+.containerForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+    .loginLable{
+        font-family: Inter;
+        font-size: 15px;
+    }
+    .loginInput{
+        margin-top: 5px;
+        height: 30px;
+        border: 1px solid var(--black);
+        border-radius: 5px;
+    }
+    .loginInput:focus-visible{
+        border: 1px solid var(--primary);
+    }
+    .passwordInput{
+        margin-top: 5px;
+
+    }
+.signInBtns{
+    display: flex;
+    justify-content: space-between;
+}
+    .resetBtn{
+        font-family: Inter;
+        font-size: 10px;
+    }
+    .authBtn{
+        font-family: Inter;
+        font-size: 15px;
+    }

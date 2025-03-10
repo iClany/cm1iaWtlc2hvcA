@@ -2,31 +2,18 @@ import React from 'react'
 import '../index.css'
 import Accordion from './mobileComponents/accordionMobile/Accordion';
 
-export default function Footer() {
-  const accordionData = [
-    {
-      title: 'Section 1',
-      content: 'Content for section 1',
-    },
-    {
-      title: 'Section 2',
-      content: 'Content for section 2',
-    },
-    {
-      title: 'Section 3',
-      content: 'Content for section 3',
-    },
-  ];
 
+
+export default function Footer() {
   return (
     <footer>
       <div className='topFooter'>
         <div className='mobileAccordion'>
-          <Accordion items={accordionData} />
+        <Accordion />
         </div>
           <div className='ulFooter'>
             <div className='firstColumn'>
-              <label className='columnLabel'>Компания</label>
+              <p className='columnLabel'>Компания</p>
                 <ul className='firstCol'>
                   <li className='columnBtn'><a href='/worktime'>Время работы</a></li>
                   <li className='columnBtn'><a href='/shopaddress'>Адрес магазина</a></li>
@@ -36,7 +23,7 @@ export default function Footer() {
                 </ul>
             </div>
             <div className='twoColumn'>
-              <label className='columnLabel'>Для покупателей</label>
+              <p className='columnLabel'>Для покупателей</p>
                 <ul className='twoCol'>
                   <li className='columnBtn'><a href='/shipping'>Условия доставки</a></li>
                   <li className='columnBtn'><a href='/payments'>Оплата и рассрочка</a></li>
@@ -46,7 +33,7 @@ export default function Footer() {
                 </ul>
             </div>
             <div className='thridColumn'>
-              <label className='columnLabel'>Каталог</label>
+              <p className='columnLabel'>Каталог</p>
                 <ul className='thridCol'>
                   <li className='columnBtn'><a href='/catalog/bycicle'>Велосипеды</a></li>
                   <li className='columnBtn'><a href='/catalog/parts'>Запчасти</a></li>

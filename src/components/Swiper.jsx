@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import '../page/main/main.css';
 
 import { Autoplay, Pagination } from 'swiper/modules';
 
@@ -19,8 +20,14 @@ export default function Slider() {
         modules={[Autoplay, Pagination]}
         className="Slide"
       >
-        <SwiperSlide><img src='/img/Slider-pc.png' alt='Информационная картинка рекламного характера'/></SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide className='sliderThumbnails'>
+          <picture>
+            <source media="(max-width: 600px)" className="sliderSize" srcSet="/img/slider-img/Slider-mobile.png" />
+            <source media="(min-width: 769px)" srcSet="/img/slider-img/Slider-pc.png" />
+            <img src="/images/desktop-image.jpg" alt="Responsive Slide" />
+          </picture>
+        </SwiperSlide>
+
       </Swiper>
   )
 }

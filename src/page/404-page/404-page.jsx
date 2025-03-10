@@ -17,7 +17,6 @@ export default function Error404Page() {
             </div>
             <h2 className='text-center h2'>Страница не найдена.</h2>
             <p className="text-center error-p-text">Мы не смогли найти то, что вы искали.</p>
-            <p className="text-center error-p-text" style={{paddingTop:"20px",paddingBottom:"40px"}}>Пожалуйста, свяжитесь с владельцем сайта, который связал вас с исходным URL-адресом, и сообщите им, что его ссылка не работает.</p>
             <a className="btn-redirect" href='/'>Вернуться на главную</a>
         </div>
     </main>
