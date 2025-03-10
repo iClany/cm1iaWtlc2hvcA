@@ -1,10 +1,29 @@
 import React from 'react'
 import '../index.css'
+import Accordion from './mobileComponents/accordionMobile/Accordion';
 
 export default function Footer() {
+  const accordionData = [
+    {
+      title: 'Section 1',
+      content: 'Content for section 1',
+    },
+    {
+      title: 'Section 2',
+      content: 'Content for section 2',
+    },
+    {
+      title: 'Section 3',
+      content: 'Content for section 3',
+    },
+  ];
+
   return (
     <footer>
       <div className='topFooter'>
+        <div className='mobileAccordion'>
+          <Accordion items={accordionData} />
+        </div>
           <div className='ulFooter'>
             <div className='firstColumn'>
               <label className='columnLabel'>Компания</label>

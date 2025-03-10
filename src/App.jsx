@@ -1,5 +1,5 @@
 import Header from "./components/header/Header.js";
-// import Footer from "./components/Footer.js";
+import Footer from "./components/Footer.js";
 import Routing from "./Routing/Routing.jsx"
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
             <div className="wrapped">
                 <Header />
                     <Routing />
-                {/* <Footer /> */}
+                <Footer />
             </div>
         )
     }

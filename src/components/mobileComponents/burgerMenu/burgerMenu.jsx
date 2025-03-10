@@ -20,10 +20,13 @@ const BurgerMenu = () => {
 
       <div className={`hamburger-menu ${isOpen ? 'open' : ''}`}>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog/bycicle">Велосипеды</a></li>
+          <li><a href="/catalog/parts">Запчасти</a></li>
+          <li><a href="/catalog/protection">Защита</a></li>
+          <li><a href="/catalog/accessoaries">Аксессуары</a></li>
+          <li><a href="/catalog/sale">Скидки</a></li>
+          <li><a href="tel:+375291278356">Позвонить нам</a></li>
         </ul>
       </div>
       <div className={`hamburger-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}></div>
