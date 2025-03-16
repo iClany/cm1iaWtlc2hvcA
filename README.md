@@ -1,6 +1,6 @@
 # Creating online shop RMBike.by
 
-    Usage technologies: ReactJS, JavaScript, MySQL, webpack.
+    Usage technologies: ReactJS, JavaScript, WebPack.
 
 Pages wrapped with React, index.html, catalog.html and other.
 
