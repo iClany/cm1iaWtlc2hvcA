@@ -2,9 +2,7 @@ import Slider from '../../components/Swiper';
 import CatalogBar from '../../components/catalogBar/catalogBar.jsx'
 import {Helmet} from 'react-helmet';
 
-import '../main/main.css'
-
-const Homepage = () => {
+const HomePage = () => {
     return(
         <main>
             <Helmet>
@@ -17,4 +15,4 @@ const Homepage = () => {
     )
 }
 
-export {Homepage}
+export default HomePage;

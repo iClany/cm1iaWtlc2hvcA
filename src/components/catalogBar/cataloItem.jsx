@@ -1,23 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import styles from './css/catalogItem.module.css';
+import { Link } from 'react-router-dom';
 
-
-
-
-const CatalogItem = ({ title, isOpen, onToggle }) => {
+const CatalogItem = ({ title, img, link, alt}) => {
   return (
-    <div className="catalog-item">
-        <span className="catalog-title">{title}</span>
-        <span className="catalog-img">
-          <img src={.object} />
-        </span>
-    </div>
+    <Link to={link} className={styles.div}>
+        <img className={styles.img} src={img} alt={alt}></img>
+        <span className={styles.span}>{title}</span>
+    </Link>
   );
 };
-
-CatalogItem.propTypes = {
-    title: PropTypes.string.isRequired,
-};
-CatalogItem.propName = {img: PropName.object.isRequired,}
 
 export default CatalogItem;

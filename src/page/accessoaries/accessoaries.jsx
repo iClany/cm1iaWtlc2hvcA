@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet';
 
-const NamePage = () => {
+const CatalogAccessoaries = () => {
     return(
         <main>
             <Helmet>
@@ -11,4 +11,4 @@ const NamePage = () => {
     )
 }
 
-export {NamePage}
+export default CatalogAccessoaries

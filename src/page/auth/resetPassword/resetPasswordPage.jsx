@@ -1,5 +1,5 @@
 import {Helmet} from 'react-helmet';
-import './reset.css';
+// import styles from './reset.module.css';
 
 const ResetPasswordPage = () => {
     return(
@@ -16,4 +16,4 @@ const ResetPasswordPage = () => {
     )
 }
 
-export {ResetPasswordPage};
+export default ResetPasswordPage;

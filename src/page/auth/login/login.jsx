@@ -24,4 +24,4 @@ const LoginPage = () => {
     )
 }
 
-export {LoginPage}
+export default LoginPage

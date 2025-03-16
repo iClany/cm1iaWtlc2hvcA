@@ -10,4 +10,4 @@ const WarrantyPage = () => {
     )
 }
 
-export {WarrantyPage}
+export default WarrantyPage

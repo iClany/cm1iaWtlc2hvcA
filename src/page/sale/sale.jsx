@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet';
 
-const CatalogPartsPage = () => {
+const CatalogSalePage = () => {
     return(
         <main>
             <Helmet>
@@ -11,4 +11,4 @@ const CatalogPartsPage = () => {
     )
 }
 
-export default CatalogPartsPage;
+export default CatalogSalePage;

@@ -1,0 +1,26 @@
+.button{
+    background-color: var(--no-active);
+    height: 50px;
+    border-radius: 40px;
+    outline: 1px var(--stroke) solid;
+    transition: 0.3s
+}
+.button:hover{
+    transition: 0.3s;
+    background: var(--primary);
+    outline: 1px var(--primary) solid;
+}
+.a{
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ABABAB;
+    font-family: Multiround;
+    font-size: 16px;
+}
+.a:hover{
+    transition: 0.3s;
+    color: var(--black);
+}

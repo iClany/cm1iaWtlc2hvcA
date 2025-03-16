@@ -1,6 +1,6 @@
-import Header from "./components/header/Header.js";
+import Header from "./components/header/Header.jsx";
 
-import Footer from "./components/Footer.js";
+import Footer from "./components/Footer.jsx";
 import Routing from "./Routing/Routing.jsx"
 
 function App() {

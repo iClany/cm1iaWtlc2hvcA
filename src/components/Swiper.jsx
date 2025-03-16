@@ -1,33 +1,39 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "./Slider.css"; // Подключаем стили
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import '../page/main/main.css';
+const slides = [
+  {
+    id: 1,
+    mobileImg: "/img/slider-img/Slider-mobile.png",
+    desktopImg: "/img/slider-img/Slider-pc.png",
+    alt: "Слайд 1",
+  }
+];
 
-import { Autoplay, Pagination } from 'swiper/modules';
-
-export default function Slider() {
+const Slider = () => {
   return (
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 7000,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination]}
-        className="Slide"
-      >
-        <SwiperSlide className='sliderThumbnails'>
-          <picture>
-            <source media="(max-width: 600px)" className="sliderSize" srcSet="/img/slider-img/Slider-mobile.png" />
-            <source media="(min-width: 769px)" srcSet="/img/slider-img/Slider-pc.png" />
-            <img src="/images/desktop-image.jpg" alt="Responsive Slide" />
-          </picture>
+    <Swiper
+      modules={[Pagination, Autoplay]}
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 7000 }}
+      className="custom-swiper"
+    >
+      {slides.map((slide) => (
+        <SwiperSlide key={slide.id}>
+          <div className="slide">
+            <picture className="slide-image">
+              <source media="(max-width: 600px)" srcSet={slide.mobileImg} />
+              <source media="(min-width: 769px)" srcSet={slide.desktopImg} />
+              <img src={slide.desktopImg} alt={slide.alt} />
+            </picture>
+          </div>
         </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
 
-      </Swiper>
-  )
-}
+export default Slider;

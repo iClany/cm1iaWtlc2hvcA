@@ -1,0 +1,41 @@
+/* Пагинация (точки) */
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px !important; /* Опускаем пагинацию ниже слайда */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    border-radius: 50%; /* Делаем стандартные точки круглыми */
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-pagination-bullet-active {
+    width: 50px; /* Делаем активную точку прямоугольной */
+    height: 10px;
+    background-color: black;
+    border-radius: 5px; /* Скругленные углы */
+  }
+  /* Ограничиваем слайд */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Обрезаем лишнее */
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Ограничиваем картинку внутри слайда */
+  .slide-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Умещаем изображение без обрезки */
+    display: block;
+  }

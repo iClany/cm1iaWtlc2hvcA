@@ -11,6 +11,7 @@
   --primary: #FFD101;
   --no-active: #F4F4F4;
   --footer-color: #DDDDDD3D;
+  --stroke: #ABABAB;
 }
 main{
   max-width: 1320px;

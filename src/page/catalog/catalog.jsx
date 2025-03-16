@@ -1,3 +1,5 @@
+import React from "react";
+
 const CatalogPage = () => {
     return(
         <main>
@@ -8,7 +10,7 @@ const CatalogPage = () => {
                         <span className='CategoryName'>Велосипеды</span>
                     </a>
                     <div className='CategoryButtons'>
-                        <img className='CategoryImage' src='' alt='Изображение запчасти велосипеда'></img>
+                        <img className='CategoryImage' alt='Изображение запчасти велосипеда'></img>
                         <span className='CategoryName'>Запчасти</span>
                     </div>
                     <div className='CategoryButtons'>
@@ -25,4 +27,4 @@ const CatalogPage = () => {
     )
 }
 
-export {CatalogPage};
+export default CatalogPage;

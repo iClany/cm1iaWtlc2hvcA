@@ -1,18 +1,19 @@
 import { Routes , Route, Navigate } from "react-router-dom";
 
 // import pages
-    import {Homepage} from '../page/main/main.jsx';
-    import {CatalogPage} from "../page/catalog/catalog.jsx";
-        // catalog pages
-        //     import { CatalogAccessoaries } from "../page/accessoaries/accessoaries.jsx";
-        //     import { CatalogBycicle } from "../page/bycicle/bycicle.jsx";
-        //     import { CatalogParts } from "../page/parts/parts.jsx";
-        //     import { CatalogProtection } from "../page/protection/protection.jsx";
-        //     import { CatalogSale } from "../page/sale/sale.jsx";
+    import HomePage from '../page/main/main.jsx';
+    import CatalogPage from "../page/catalog/catalog.jsx";
+    // catalog pages
+        import CatalogBicyclesPage from '../page/bicycle/bicycle.jsx'
+        import CatalogAccessoariesPage from "../page/accessoaries/accessoaries.jsx";
+        import CatalogPartsPage from "../page/parts/parts.jsx";
+        import CatalogProtectionPage from "../page/protection/protection.jsx";
+        import CatalogSalePage from "../page/sale/sale.jsx";
+            
     // import { SearchPage } from "../page/search/search.jsx";
     // import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
-    import {LoginPage} from '../page/auth/login/login.jsx'
-    import {ResetPasswordPage} from '../page/auth/resetpass/resetpass.jsx'
+    import LoginPage from '../page/auth/login/login.jsx';
+    import ResetPasswordPage from '../page/auth/resetPassword/resetPasswordPage.jsx';
     import {Terms} from "../page/terms/terms-page.jsx";
     import {Error404Page} from "../page/404-page/404-page.jsx";
 
@@ -20,13 +21,16 @@ import { Routes , Route, Navigate } from "react-router-dom";
  export default function Routing() {
     return(
             <Routes>
-                <Route path="/" element={<Homepage/>}/>
-                <Route path="/catalog" element={<CatalogPage/>}/> {/* Доделать */}
-                    {/* <Route path="/catalog/bycicle" element={<CatalogBycicle/>}/>
-                    <Route path="/catalog/parts" element={<CatalogParts/>}/>
-                    <Route path="/catalog/protection" element={<CatalogProtection/>}/>
-                    <Route path="/catalog/accessoaries" element={<CatalogAccessoaries/>}/>
-                    <Route path="/catalog/sale" element={<CatalogSale/>}/> */}
+                <Route path="/" element={<HomePage/>}/>
+                    {/* Catalog */}
+                    <Route path="/catalog" element={<CatalogPage/>}/>
+                        <Route path="/catalog/bicycles/" element={<CatalogBicyclesPage/>}/>
+                        <Route path="/catalog/accessoaries" element={<CatalogAccessoariesPage/>}/>
+                        <Route path="/catalog/parts" element={<CatalogPartsPage/>}/>
+                        <Route path="/catalog/protection" element={<CatalogProtectionPage/>}/>
+                        <Route path="/sale" element={<CatalogSalePage/>}/>
+                    {/* /Catalog */}
+                    
                 {/* <Route path="/search" element={<SearchPage/>}/> */}
                 {/* <Route path="/return" element={</>}/> */}
                 {/* <Route path="/warranty" element={</>}/> */}
