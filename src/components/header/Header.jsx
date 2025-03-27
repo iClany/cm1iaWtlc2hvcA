@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../index.css'
-import './header/header.css'
+import './header.css'
 import BurgerMenu from '../mobileComponents/burgerMenu/burgerMenu'
 import { BottomMenu } from '../mobileComponents/bottomMenu/bottomMenu'
 

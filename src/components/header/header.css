@@ -13,7 +13,7 @@
             align-items: center;
             background-color: var(--primary);
             width: 81.35%;
-            margin-inline: auto;
+            margin: 0px;
             box-shadow: 0 2px 16px hsla(228, 95%, 4%, .1);
             padding: 0.625rem 1.438rem;
             border-radius: 1.25rem;
@@ -40,7 +40,7 @@
             align-items: center;
             background-color: var(--primary);
             width: 81.35%;
-            margin-inline: auto;
+            margin: 0px;
             box-shadow: 0 2px 16px hsla(228, 95%, 4%, .1);
             padding: 0.625rem 1.438rem;
             border-radius: 1.25rem;

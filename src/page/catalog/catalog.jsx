@@ -1,9 +1,11 @@
 import React from "react";
+import ProductList from "../../components/catalogItems/productList.jsx";
 
 const CatalogPage = () => {
     return(
         <main>
-            <div>
+            <ProductList/>
+            {/* <div>
                 <div className="">
                     <a className="CategoryButtons" href="/">
                         <img className='CategoryImage' src='' alt='Изображение велосипеда'></img>
@@ -22,7 +24,7 @@ const CatalogPage = () => {
                         <span className='CategoryName'>Аксессуары</span>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </main>
     )
 }

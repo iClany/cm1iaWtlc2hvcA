@@ -6,6 +6,23 @@
   font-family: Inter;
   src: url(/public/font/Inter/Inter.ttf);
 }
+/* Light theme (по умолчанию) */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+}
+
+/* Dark theme */
+[data-theme='dark'] {
+  --color-bg: #000;
+  --color-text: #ffffff;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
 :root{
   --black: #212121;
   --primary: #FFD101;
@@ -13,12 +30,17 @@
   --footer-color: #DDDDDD3D;
   --stroke: #ABABAB;
 }
+img {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+}
 main{
   max-width: 1320px;
   margin: auto;
 }
 body{
-  margin-top: 10px;
+  margin: 24px;
 }
 a{
   color: var(--black);
@@ -79,7 +101,7 @@ footer{
   /* Footer */
         footer{
           width: auto;
-          margin: 1.25rem 0rem 8rem;
+          margin: 1.25rem 0rem 5.5rem;
           padding: 25px;
         }
         .textFooter{

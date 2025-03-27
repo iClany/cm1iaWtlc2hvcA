@@ -10,6 +10,12 @@ const slides = [
     mobileImg: "/img/slider-img/Slider-mobile.png",
     desktopImg: "/img/slider-img/Slider-pc.png",
     alt: "Слайд 1",
+  },
+  {
+    id: 2,
+    mobileImg: "/img/slider-img/Slider-mobile.png",
+    desktopImg: "/img/slider-img/Slider-pc.png",
+    alt: "Слайд 2",
   }
 ];
 
@@ -24,7 +30,7 @@ const Slider = () => {
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>
           <div className="slide">
-            <picture className="slide-image">
+            <picture className="slide-image" alt={slide.alt}>
               <source media="(max-width: 600px)" srcSet={slide.mobileImg} />
               <source media="(min-width: 769px)" srcSet={slide.desktopImg} />
               <img src={slide.desktopImg} alt={slide.alt} />
