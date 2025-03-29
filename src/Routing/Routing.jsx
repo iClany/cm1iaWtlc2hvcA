@@ -4,18 +4,22 @@ import { Routes , Route, Navigate } from "react-router-dom";
     import HomePage from '../page/main/main.jsx';
     import CatalogPage from "../page/catalog/catalog.jsx";
     // catalog pages
-        import CatalogBicyclesPage from '../page/bicycle/bicycle.jsx'
-        import CatalogAccessoariesPage from "../page/accessoaries/accessoaries.jsx";
-        import CatalogPartsPage from "../page/parts/parts.jsx";
-        import CatalogProtectionPage from "../page/protection/protection.jsx";
-        import CatalogSalePage from "../page/sale/sale.jsx";
+        import CatalogBicyclesPage from '../page/catalog/bicycle/bicycle.jsx'
+        import CatalogAccessoariesPage from "../page/catalog/accessoaries/accessoaries.jsx";
+        import CatalogPartsPage from "../page/catalog/parts/parts.jsx";
+        import CatalogProtectionPage from "../page/catalog/protection/protection.jsx";
+        import CatalogSalePage from "../page/catalog/sale/sale.jsx";
             
     // import { SearchPage } from "../page/search/search.jsx";
-    // import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
-    import LoginPage from '../page/auth/login/login.jsx';
-    import ResetPasswordPage from '../page/auth/resetPassword/resetPasswordPage.jsx';
+    
+    import LoginPage from '../page/userPages/auth/login/login.jsx';
+    import ResetPasswordPage from '../page/userPages/auth/resetPassword/resetPasswordPage.jsx';
     import {Terms} from "../page/terms/terms-page.jsx";
     import {Error404Page} from "../page/404-page/404-page.jsx";
+
+    // Admin panel page
+    import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
+    import AddItemsPictures from '../page/admin-panel/adding-items/addPictures.jsx'
 
 
  export default function Routing() {
@@ -49,6 +53,10 @@ import { Routes , Route, Navigate } from "react-router-dom";
                         {/* Authorization system */}
                         <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/reset" element={<ResetPasswordPage/>}/>
+
+                        {/* Admin Panel */}
+                        <Route path="/admin-panel" element={<AdminPanelPage/>}/>
+                        <Route path="/adminPanel/items" element={<AddItemsPictures/>}/>
                 <Route path="/404" element={<Error404Page/>} />
                 <Route path="*" element={ <Navigate to="/404" replace />} />
             </Routes>

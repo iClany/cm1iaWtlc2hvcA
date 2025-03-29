@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const YandexMaps = () => {
   const mapRef = useRef(null);
