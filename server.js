@@ -7,7 +7,7 @@ const path = require("path");
 const axios = require("axios");
 
 const app = express();
-const PORT = 5001;
+const PORT = 5002;
 
 app.use(cors());
 app.use(express.static("public"));
