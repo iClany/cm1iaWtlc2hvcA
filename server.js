@@ -7,7 +7,7 @@ const path = require("path");
 const axios = require("axios");
 
 const app = express();
-const PORT = 5002;
+const PORT = 5001;
 
 app.use(cors());
 app.use(express.static("public"));
@@ -52,3 +52,5 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Сервер запущен на http://localhost:${PORT}`));
+
+

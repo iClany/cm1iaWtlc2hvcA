@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AccordionItem from './AccordionItem';
+import AccordionItem from './AccordionItem.jsx';
 import './Accordion.css';
 
 const Accordion = () => {

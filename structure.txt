@@ -1,0 +1,57 @@
+src/
+├── build/
+    ├── backend/
+        ├── authAPI/
+            ├── components
+                ├──AuthRoute.js
+                ├──Navbar.js
+            ├── context/
+                ├──AuthContext.js
+            ├── pages/
+                ├── Signup.js
+                ├── Login.js
+                ├── VerifyEmail.js
+                ├── ForgotPassword.js
+                ├── ResetPassword.js
+                ├── Profile.js
+                └── Home.js
+            ├── service/
+                └── api.js
+            ├── styles/
+                ├── styles.css
+            ├── .env
+            ├── App.js
+            └── index.js
+        └── products/
+    ├── font/
+    ├── img/
+    ├── static/
+    ├── assets-manifest.json
+    └── index.html
+├── public/
+    ├── font
+        ├── Inter
+            └── Inter.ttf
+        └── MultiroundPro
+            └── MultiroundPro.otf
+    ├── img
+        ├── icon
+            
+├── src/
+    ├── components/
+        ├── 
+    ├── pages/
+    ├── Routing/
+    ├── App.jsx
+    ├── index.css
+    ├── index.js
+    ├── Privacy.js
+├── .env
+├── .gitignore
+├── .htaccess
+├── auth.js
+├── authMiddleware.js
+├── package-lock.json
+├── package.json
+├── server.js
+

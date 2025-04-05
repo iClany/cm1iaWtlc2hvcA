@@ -4,7 +4,7 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.port;
 
 const API_URL = "https://api.moysklad.ru/api/remap/1.2/entity/product";
 const API_KEY = process.env.MoySklad_API_KEY;

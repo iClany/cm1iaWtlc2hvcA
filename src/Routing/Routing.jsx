@@ -11,15 +11,22 @@ import { Routes , Route, Navigate } from "react-router-dom";
         import CatalogSalePage from "../page/catalog/sale/sale.jsx";
             
     // import { SearchPage } from "../page/search/search.jsx";
-    
-    import LoginPage from '../page/userPages/auth/login/login.jsx';
-    import ResetPasswordPage from '../page/userPages/auth/resetPassword/resetPasswordPage.jsx';
+    // User authentication system pages
+    import LoginPage from '../page/userPages/auth/login/login.jsx'; // Страница входа в аккаунт
+    import SingUpPage from "../page/userPages/auth/singup/singup.jsx"; // Страница регистрации аккаунта
+    import VerifyEmailPage from "../page/userPages/auth/verifyemail/verify-email.jsx"; // Страница подтверждения Email при регистрации
+    import ForgotPage from "../page/userPages/auth/forgot/forgot.jsx"; // Страница восстановаления пароля
+    import ProfilePage from "../page/userPages/profile/profile.jsx"; // Профиль
+    // Legal details for users
     import {Terms} from "../page/terms/terms-page.jsx";
     import {Error404Page} from "../page/404-page/404-page.jsx";
 
     // Admin panel page
-    import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
+    // import { AdminPanelPage } from "../page/admin-panel/admin-panel.jsx";
     import AddItemsPictures from '../page/admin-panel/adding-items/addPictures.jsx'
+
+
+    
 
 
  export default function Routing() {
@@ -51,11 +58,14 @@ import { Routes , Route, Navigate } from "react-router-dom";
                 {/* <Route path="/" element={</>}/> */}
 
                         {/* Authorization system */}
-                        <Route path="/login" element={<LoginPage/>}/>
-                        <Route path="/reset" element={<ResetPasswordPage/>}/>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/singup" element={<SingUpPage />} />
+                        <Route path="/verify-email" element={<VerifyEmailPage />} />
+                        <Route path="/forgot" element={<ForgotPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
 
                         {/* Admin Panel */}
-                        <Route path="/admin-panel" element={<AdminPanelPage/>}/>
+                        {/* <Route path="/admin-panel" element={<AdminPanelPage/>}/> */}
                         <Route path="/adminPanel/items" element={<AddItemsPictures/>}/>
                 <Route path="/404" element={<Error404Page/>} />
                 <Route path="*" element={ <Navigate to="/404" replace />} />
