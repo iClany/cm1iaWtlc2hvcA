@@ -1,0 +1,49 @@
+/* Базовые стили для мобильной навигации */
+.bottomNavigation {
+  position: fixed;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  background-color: var(--primary);
+  width: 81.35%;
+  margin-inline: auto;
+  box-shadow: 0 2px 16px hsla(228, 95%, 4%, .1);
+  padding: 0.625rem 1.25rem;
+  border-radius: 1.25rem;
+  z-index: 50;
+}
+
+.navigationList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.75rem;
+}
+
+.navigationIcon {
+  height: 24px;
+}
+
+.navigationItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.6;
+  transition: opacity 200ms ease;
+  text-align: center;
+  font-family: Multiround;
+  font-size: 10px;
+}
+
+.navigationItem:hover {
+  opacity: 1;
+}
+
+/* Скрытие на устройствах шире 600px */
+@media only screen and (min-width: 601px) {
+  .mobileOnlyContainer {
+    display: none !important;
+  }
+}

@@ -1,0 +1,81 @@
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 2rem 0 0;
+    font-size: 0.9rem;
+  }
+  
+  .topFooter {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .mobileAccordion {
+    display: none;
+  }
+  
+  .footerColumns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footerColumn {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .columnLabel {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--footer-heading);
+  }
+  
+  .columnItem {
+    margin-bottom: 0.5rem;
+  }
+  
+  .columnLink {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .columnLink:hover {
+    color: var(--primary);
+  }
+  
+  .bottomFooter {
+    background-color: var(--footer-bottom-bg);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .footerText {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .paymentsImage {
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .mobileAccordion {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footerColumns {
+      display: none;
+    }
+    
+    .footerColumn {
+      min-width: 100%;
+    }
+  }
