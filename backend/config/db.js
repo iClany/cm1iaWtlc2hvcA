@@ -6,9 +6,16 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  waitForConnections: txxrue,
+  waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  namedPlaceholders: true,
+  timezone: '+00:00'
 });
 
-module.exports = pool;
+// Test connection
+pool.query('SELECT 1')
+  .then(() => console.log('MySQL pool created'))
+  .catch(err => console.error('MySQL pool error:', err));
+
+module.exports = { pool };

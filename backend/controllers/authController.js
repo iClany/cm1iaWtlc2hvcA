@@ -1,241 +1,77 @@
-const User = require('../models/User');
-const Token = require('../models/Token');
-const { sendVerificationEmail, sendPasswordResetEmail } = require('../utils/emailService');
-const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const { pool } = require('../config/db');
+const AppError = require('../utils/appError');
 
-// Регистрация пользователя
-exports.register = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  const { email, password, name, phone } = req.body;
-
+exports.register = async (req, res, next) => {
   try {
-    // Проверка на существующего пользователя
-    const existingUser = await User.findByEmail(email);
-    if (existingUser) {
-      return res.status(400).json({ message: 'Пользователь с таким email уже существует' });
+    const { email, password, name } = req.body;
+    
+    // 1. Check if user exists
+    const [users] = await pool.execute(
+      'SELECT id FROM users WHERE email = ?',
+      [email]
+    );
+    
+    if (users.length > 0) {
+      return next(new AppError('Email already exists', 400));
     }
 
-    // Создание пользователя
-    const userId = await User.create({ email, password, name, phone });
-    const user = await User.findById(userId);
+    // 2. Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Отправка email для подтверждения
-    await sendVerificationEmail(user.email, user.verification_token);
-
-    // Генерация JWT токена
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRE
-    });
-
-    res.status(201).json({
-      success: true,
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        phone: user.phone,
-        isVerified: user.is_verified
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при регистрации' });
-  }
-};
-
-// Вход пользователя
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Проверка пользователя
-    const user = await User.findByEmail(email);
-    if (!user) {
-      return res.status(401).json({ message: 'Неверные учетные данные' });
-    }
-
-    // Проверка пароля
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Неверные учетные данные' });
-    }
-
-    // Проверка верификации email
-    if (!user.is_verified) {
-      return res.status(403).json({ 
-        message: 'Email не подтвержден', 
-        userId: user.id 
-      });
-    }
-
-    // Генерация JWT токена
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRE
-    });
-
-    res.status(200).json({
-      success: true,
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        phone: user.phone,
-        isVerified: user.is_verified,
-        role: user.role
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при входе' });
-  }
-};
-
-// Подтверждение email
-exports.verifyEmail = async (req, res) => {
-  const { token } = req.params;
-
-  try {
-    const isVerified = await User.verifyEmail(token);
-    if (!isVerified) {
-      return res.status(400).json({ message: 'Неверный или устаревший токен подтверждения' });
-    }
-
-    res.status(200).json({ message: 'Email успешно подтвержден' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при подтверждении email' });
-  }
-};
-
-// Запрос на сброс пароля
-exports.forgotPassword = async (req, res) => {
-  const { email } = req.body;
-
-  try {
-    const user = await User.findByEmail(email);
-    if (!user) {
-      return res.status(404).json({ message: 'Пользователь с таким email не найден' });
-    }
-
-    const resetToken = await User.createPasswordResetToken(email);
-    if (!resetToken) {
-      return res.status(500).json({ message: 'Ошибка при создании токена сброса' });
-    }
-
-    await sendPasswordResetEmail(email, resetToken);
-
-    res.status(200).json({ 
-      message: 'Письмо с инструкциями по сбросу пароля отправлено на email',
-      resetToken // Только для тестирования, в продакшене не отправлять
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при запросе сброса пароля' });
-  }
-};
-
-// Сброс пароля
-exports.resetPassword = async (req, res) => {
-  const { token } = req.params;
-  const { password } = req.body;
-
-  try {
-    const success = await User.resetPassword(token, password);
-    if (!success) {
-      return res.status(400).json({ message: 'Неверный или устаревший токен сброса' });
-    }
-
-    res.status(200).json({ message: 'Пароль успешно изменен' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при сбросе пароля' });
-  }
-};
-
-// Повторная отправка подтверждения email
-exports.resendVerification = async (req, res) => {
-  const { email } = req.body;
-
-  try {
-    const user = await User.findByEmail(email);
-    if (!user) {
-      return res.status(404).json({ message: 'Пользователь с таким email не найден' });
-    }
-
-    if (user.is_verified) {
-      return res.status(400).json({ message: 'Email уже подтвержден' });
-    }
-
-    // Обновляем токен подтверждения
-    const newToken = uuidv4();
-    await pool.execute(
-      'UPDATE users SET verification_token = ? WHERE email = ?',
-      [newToken, email]
+    // 3. Create user
+    const [result] = await pool.execute(
+      'INSERT INTO users (email, password, name) VALUES (?, ?, ?)',
+      [email, hashedPassword, name]
     );
 
-    await sendVerificationEmail(email, newToken);
+    // 4. Generate JWT
+    const token = jwt.sign(
+      { id: result.insertId },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
 
-    res.status(200).json({ message: 'Письмо с подтверждением отправлено повторно' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при повторной отправке подтверждения' });
-  }
-};
-
-// @desc    Обновление JWT токена
-// @route   POST /api/auth/refresh-token
-// @access  Public
-exports.refreshToken = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  try {
-    const { refreshToken } = req.body;
-
-    // Проверяем refresh token
-    const { userId } = await Token.verify(refreshToken, 'refresh');
-
-    // Удаляем использованный refresh token
-    await Token.delete(refreshToken);
-
-    // Генерируем новую пару токенов
-    const accessToken = Token.generateJWT(userId, process.env.JWT_SECRET, '15m');
-    const newRefreshToken = await Token.create(userId, 'refresh');
-
-    res.json({
-      accessToken,
-      refreshToken: newRefreshToken,
-      tokenType: 'Bearer'
+    res.status(201).json({
+      status: 'success',
+      token,
+      user: { id: result.insertId, email, name }
     });
-  } catch (error) {
-    console.error(error);
-    res.status(401).json({ message: 'Недействительный токен' });
+  } catch (err) {
+    next(err);
   }
 };
 
-// @desc    Выход из системы
-// @route   POST /api/auth/logout
-// @access  Private
-exports.logout = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
-    // Удаляем все refresh токены пользователя
-    if (req.user?.id) {
-      await Token.deleteAllForUser(req.user.id, 'refresh');
+    const { email, password } = req.body;
+
+    // 1. Check if user exists
+    const [users] = await pool.execute(
+      'SELECT * FROM users WHERE email = ?',
+      [email]
+    );
+    
+    const user = users[0];
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return next(new AppError('Incorrect email or password', 401));
     }
 
-    res.status(200).json({ message: 'Успешный выход из системы' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при выходе из системы' });
+    // 2. Generate JWT
+    const token = jwt.sign(
+      { id: user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      token,
+      user: { id: user.id, email: user.email, name: user.name }
+    });
+  } catch (err) {
+    next(err);
   }
 };
