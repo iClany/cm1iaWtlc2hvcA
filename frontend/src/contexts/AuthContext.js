@@ -1,68 +1,95 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth должен использоваться внутри AuthProvider');
+  }
+  return context;
+}
+
+export function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Проверка аутентификации при загрузке
   useEffect(() => {
-    const checkAuth = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
       try {
-        const token = localStorage.getItem('token');
-        if (token) {
-          const decoded = jwtDecode(token);
-          if (decoded.exp * 1000 < Date.now()) {
-            logout();
-          } else {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axios.get('/api/auth/me');
-            setUser(response.data);
-            setIsAuthenticated(true);
-          }
-        }
-      } catch (err) {
-        console.error('Ошибка проверки аутентификации:', err);
-        logout();
-      } finally {
-        setLoading(false);
+        const decoded = jwtDecode(token);
+        setCurrentUser(decoded);
+      } catch (error) {
+        localStorage.removeItem('token');
       }
-    };
-
-    checkAuth();
+    }
+    setLoading(false);
   }, []);
 
-  const login = (data) => {
-    localStorage.setItem('token', data.token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-    setUser(data.user);
-    setIsAuthenticated(true);
-  };
+  async function login(email, password) {
+    try {
+      const response = await axios.post('http://localhost:8893/api/auth/login', {
+        email,
+        password
+      });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      const decoded = jwtDecode(token);
+      setCurrentUser(decoded);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  const logout = () => {
+  async function register(name, email, password) {
+    try {
+      const response = await axios.post('http://localhost:8893/api/auth/register', {
+        name,
+        email,
+        password
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function logout() {
     localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
-    setUser(null);
-    setIsAuthenticated(false);
+    setCurrentUser(null);
+  }
+
+  async function sendEmailVerification() {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(
+        'http://localhost:8893/api/auth/send-verification-email',
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  const value = {
+    currentUser,
+    login,
+    register,
+    logout,
+    sendEmailVerification
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated,
-        loading,
-        login,
-        logout,
-      }}
-    >
-      {children}
+    <AuthContext.Provider value={value}>
+      {!loading && children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => useContext(AuthContext);
+}

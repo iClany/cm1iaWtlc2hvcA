@@ -7,3 +7,12 @@
     gap: 24px;
     margin-bottom: 24px;
 }
+.itemsWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 24px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}

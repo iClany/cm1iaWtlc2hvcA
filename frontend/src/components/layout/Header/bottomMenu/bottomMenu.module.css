@@ -42,7 +42,7 @@
 }
 
 /* Скрытие на устройствах шире 600px */
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 992px) {
   .mobileOnlyContainer {
     display: none !important;
   }

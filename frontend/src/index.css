@@ -27,6 +27,7 @@ img {
 main{
   max-width: 1320px;
   margin: auto;
+  margin-top: 300px;
 }
 body{
   margin: 24px;

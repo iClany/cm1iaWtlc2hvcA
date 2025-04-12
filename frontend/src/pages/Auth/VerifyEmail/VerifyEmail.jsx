@@ -1,100 +1,111 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { Button, Box, Typography, Container, Alert, CircularProgress } from '@mui/material';
-import { verifyEmail, resendVerification } from '../../api/authApi';
-import toast from 'react-hot-toast';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import styles from './VerifyEmail.module.css';
 
 const VerifyEmail = () => {
-  const { token } = useParams();
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [status, setStatus] = useState('verifying');
-  const [email, setEmail] = useState(location.state?.email || '');
-  const [timer, setTimer] = useState(0);
+  const [verificationStatus, setVerificationStatus] = useState('loading');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // Таймер для повторной отправки
   useEffect(() => {
-    if (timer > 0) {
-      const interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [timer]);
-
-  // Проверка токена при загрузке компонента
-  useEffect(() => {
-    if (token) {
-      const verify = async () => {
-        try {
-          await verifyEmail(token);
-          setStatus('verified');
-          toast.success('Email успешно подтвержден!');
-          setTimeout(() => navigate('/login'), 3000);
-        } catch (err) {
-          setStatus('failed');
-          toast.error(err.response?.data?.message || 'Ошибка при подтверждении email');
+    const verifyEmail = async () => {
+      try {
+        const token = searchParams.get('token');
+        console.log('Получен токен:', token);
+        
+        if (!token) {
+          setVerificationStatus('error');
+          setErrorMessage('Токен подтверждения не найден');
+          return;
         }
-      };
-      verify();
-    }
-  }, [token, navigate]);
 
-  const handleResend = async () => {
-    if (timer > 0) return;
-    
-    try {
-      await resendVerification(email);
-      setTimer(60);
-      toast.success('Письмо с подтверждением отправлено повторно');
-    } catch (err) {
-      toast.error(err.response?.data?.message || 'Ошибка при повторной отправке');
-    }
-  };
+        // Проверяем наличие переменных окружения
+        console.log('Все переменные окружения:', process.env);
+        console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+        
+        if (!process.env.REACT_APP_API_URL) {
+          console.error('REACT_APP_API_URL не определен в .env файле');
+          setVerificationStatus('error');
+          setErrorMessage('Ошибка конфигурации приложения');
+          return;
+        }
+
+        const apiUrl = process.env.REACT_APP_API_URL;
+        console.log('API URL из переменных окружения:', apiUrl);
+        const verifyUrl = `${apiUrl}/auth/verify-email?token=${token}`;
+        console.log('Отправка запроса на:', verifyUrl);
+
+        const response = await axios.get(verifyUrl);
+        console.log('Ответ сервера:', response.data);
+
+        if (response.status === 200) {
+          setVerificationStatus('success');
+          // Перенаправляем на страницу входа через 3 секунды
+          setTimeout(() => {
+            navigate('/login');
+          }, 3000);
+        }
+      } catch (error) {
+        console.error('Ошибка верификации:', error);
+        setVerificationStatus('error');
+        
+        if (error.response) {
+          // Обработка ошибок от сервера
+          switch (error.response.status) {
+            case 400:
+              setErrorMessage(error.response.data.message || 'Недействительный токен');
+              break;
+            case 404:
+              setErrorMessage('Пользователь не найден');
+              break;
+            case 500:
+              setErrorMessage('Ошибка сервера при верификации email');
+              break;
+            default:
+              setErrorMessage('Произошла ошибка при верификации email');
+          }
+        } else {
+          setErrorMessage('Не удалось подключиться к серверу');
+        }
+      }
+    };
+
+    verifyEmail();
+  }, [searchParams, navigate]);
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography component="h1" variant="h5">
-          Подтверждение Email
-        </Typography>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        {verificationStatus === 'loading' && (
+          <div className={styles.status}>
+            <h2>Подтверждение email</h2>
+            <p>Пожалуйста, подождите...</p>
+          </div>
+        )}
 
-        <Box sx={{ mt: 3, width: '100%', textAlign: 'center' }}>
-          {status === 'verifying' && (
-            <>
-              <CircularProgress />
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                Подтверждение email...
-              </Typography>
-            </>
-          )}
+        {verificationStatus === 'success' && (
+          <div className={styles.status}>
+            <h2>Email успешно подтвержден!</h2>
+            <p>Вы будете перенаправлены на страницу входа...</p>
+          </div>
+        )}
 
-          {status === 'verified' && (
-            <Alert severity="success" sx={{ width: '100%', mt: 2 }}>
-              Ваш email успешно подтвержден! Вы будете перенаправлены на страницу входа.
-            </Alert>
-          )}
-
-          {status === 'failed' && (
-            <>
-              <Alert severity="error" sx={{ width: '100%', mt: 2 }}>
-                Не удалось подтвердить email. Ссылка может быть недействительной или устаревшей.
-              </Alert>
-              {email && (
-                <Button
-                  variant="contained"
-                  onClick={handleResend}
-                  disabled={timer > 0}
-                  sx={{ mt: 2 }}
-                >
-                  {timer > 0 ? `Отправить повторно (${timer}с)` : 'Отправить письмо повторно'}
-                </Button>
-              )}
-            </>
-          )}
-        </Box>
-      </Box>
-    </Container>
+        {verificationStatus === 'error' && (
+          <div className={styles.status}>
+            <h2>Ошибка подтверждения</h2>
+            <p>{errorMessage}</p>
+            <button 
+              className={styles.button}
+              onClick={() => navigate('/login')}
+            >
+              Вернуться на страницу входа
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

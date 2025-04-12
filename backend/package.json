@@ -1,33 +1,23 @@
 {
-  "name": "backend",
+  "name": "auth-backend",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "Authentication backend with Express and MySQL",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
-    "axios": "^1.8.4",
-    "bcryptjs": "^3.0.2",
-    "cookie-parser": "^1.4.7",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^5.1.0",
-    "express-rate-limit": "^7.5.0",
-    "express-validator": "^7.2.1",
-    "helmet": "^8.1.0",
-    "hpp": "^0.2.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.2",
-    "multer-s3": "^3.0.1",
-    "mysql2": "^3.14.0",
-    "nodemailer": "^6.10.0",
-    "xss-clean": "^0.1.4"
+    "mysql2": "^3.6.5",
+    "nodemailer": "^6.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

@@ -9,9 +9,9 @@ import logo from '../../../assets/images/logo/logo-header.svg';
 import { phoneIcon, locationIcon, searchIcon, cartIcon, loginIcon } from '../../assets/icons';
 
 export default function Header() {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [shouldShowHeader, setShouldShowHeader] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +29,7 @@ export default function Header() {
       }
 
       setLastScrollY(currentScrollY);
+      setIsScrolled(currentScrollY > 0);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -37,7 +38,7 @@ export default function Header() {
 
   return (
     <Fragment>
-      <header className={`${header.header} ${!shouldShowHeader ? header.hidden : ''}`}>
+      <header className={`${header.header} ${!shouldShowHeader ? header.hidden : ''} ${isScrolled ? 'scrolled' : ''}`}>
         <div className={header.headerTop}>
           <Link className={header.logo} to="/">
             <img alt='Логотип компании RMBike.by' src={logo} />
@@ -59,7 +60,7 @@ export default function Header() {
           </div>
           <BurgerMenu />
         </div>
-        <nav className={header.headerBottom}>
+        <div className={header.headerBottom}>
           <ul className={header.navMenu}>
             <li>
               <Link className={header.navbtn} to='/catalog/bycicle'>Велосипеды</Link>
@@ -88,7 +89,7 @@ export default function Header() {
               <img alt='Иконка входа в аккаунт' src={loginIcon} title='Вход в аккаунт' />
             </Link>
           </div>
-        </nav>
+        </div>
       </header>
       <main>
         <BottomMenu />

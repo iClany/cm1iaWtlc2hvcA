@@ -6,7 +6,8 @@
     z-index: 2;
 }
 .img{
-    max-width: 100%;
+    min-width: 136px;
+    max-width: 234px;
     height: auto;
     display: block;
     border-radius: 40px;
