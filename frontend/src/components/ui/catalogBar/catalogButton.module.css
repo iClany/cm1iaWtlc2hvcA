@@ -3,7 +3,8 @@
     height: 50px;
     border-radius: 40px;
     outline: 1px var(--stroke) solid;
-    transition: 0.3s
+    transition: 0.3s;
+    width: 100%;
 }
 .button:hover{
     transition: 0.3s;
@@ -19,6 +20,7 @@
     color: #ABABAB;
     font-family: Multiround;
     font-size: 16px;
+    width: 100%;
 }
 .a:hover{
     transition: 0.3s;

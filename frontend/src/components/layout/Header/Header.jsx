@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../../index.css';
 import BurgerMenu from './burgerMenu/burgerMenu.jsx';
 import BottomMenu from './bottomMenu/bottomMenu.jsx';
-import header from './Header.module.css';
+import headerStyles from './Header.module.css';
 
 import logo from '../../../assets/images/logo/logo-header.svg';
 import { phoneIcon, locationIcon, searchIcon, cartIcon, loginIcon } from '../../assets/icons';
@@ -36,56 +36,65 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  useEffect(() => {
+    const header = document.querySelector(`.${headerStyles.header}`);
+    if (window.scrollY > 0) {
+      header.classList.add(headerStyles.scrolled);
+    } else {
+      header.classList.remove(headerStyles.scrolled);
+    }
+  }, []);
+
   return (
     <Fragment>
-      <header className={`${header.header} ${!shouldShowHeader ? header.hidden : ''} ${isScrolled ? 'scrolled' : ''}`}>
-        <div className={header.headerTop}>
-          <Link className={header.logo} to="/">
+      <header className={`${headerStyles.header} ${!shouldShowHeader ? headerStyles.hidden : ''}`}>
+        <div className={headerStyles.headerTop}>
+          <Link className={headerStyles.logo} to="/">
             <img alt='Логотип компании RMBike.by' src={logo} />
           </Link>
-          <div className={header.headerButtons}>
-            <a className={header.phoneBtn} href='tel:+375291278356'>
-              <img className={header.iconPhone} alt='Иконка номера телефона' src={phoneIcon} />
+          <div className={headerStyles.headerButtons}>
+            <a className={headerStyles.phoneBtn} href='tel:+375291278356'>
+              <img className={headerStyles.iconPhone} alt='Иконка номера телефона' src={phoneIcon} />
               +375 (29) 127-83-56
             </a>
             <a 
-              className={header.locationBtn} 
+              className={headerStyles.locationBtn} 
               target='_blank' 
               rel='noopener noreferrer' 
               href='https://yandex.by/maps/-/CDhyvZ~w'
             >
-              <img className={header.iconLocation} alt='Иконка местонахождения магазина' src={locationIcon} />
+              <img className={headerStyles.iconLocation} alt='Иконка местонахождения магазина' src={locationIcon} />
               г.Гомель, ул. Катунина д. 5
             </a>
           </div>
           <BurgerMenu />
         </div>
-        <div className={header.headerBottom}>
-          <ul className={header.navMenu}>
+        <div className={`${headerStyles.headerBottom} ${isScrolled ? headerStyles.scrolled : ''}`}>
+          <ul className={headerStyles.navMenu}>
             <li>
-              <Link className={header.navbtn} to='/catalog/bycicle'>Велосипеды</Link>
+              <Link className={headerStyles.navbtn} to='/catalog/bycicle'>Велосипеды</Link>
             </li>
             <li>
-              <Link className={header.navbtn} to='/catalog/parts'>Запчасти</Link>
+              <Link className={headerStyles.navbtn} to='/catalog/parts'>Запчасти</Link>
             </li>
             <li>
-              <Link className={header.navbtn} to='/catalog/protection'>Защита</Link>
+              <Link className={headerStyles.navbtn} to='/catalog/protection'>Защита</Link>
             </li>
             <li>
-              <Link className={header.navbtn} to='/catalog/accessories'>Аксессуары</Link>
+              <Link className={headerStyles.navbtn} to='/catalog/accessories'>Аксессуары</Link>
             </li>
             <li>
-              <Link className={header.navbtn} to='/catalog/sale'>Скидки</Link>
+              <Link className={headerStyles.navbtn} to='/catalog/sale'>Скидки</Link>
             </li>
           </ul>
-          <div className={header.iconsBtn}>
-            <Link className={header.navicons} to='/search'>
+          <div className={headerStyles.iconsBtn}>
+            <Link className={headerStyles.navicons} to='/search'>
               <img alt='Иконка поиска товаров' src={searchIcon} title='Поиск товаров' />
             </Link>
-            <Link className={header.navicons} to='/cart'>
+            <Link className={headerStyles.navicons} to='/cart'>
               <img alt='Иконка корзины товара' src={cartIcon} title='Корзина товаров' />
             </Link>
-            <Link className={header.navicons} to='/login'>
+            <Link className={headerStyles.navicons} to='/login'>
               <img alt='Иконка входа в аккаунт' src={loginIcon} title='Вход в аккаунт' />
             </Link>
           </div>

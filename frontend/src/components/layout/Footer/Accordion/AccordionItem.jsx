@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { accordionOpen, accordionClose } from '../../../ui/icons/icons';
+import accordionOpen from '../../../../assets/images/icons/accordion-closed.svg';
+import accordionClose from '../../../../assets/images/icons/accordion-opened.svg';
 import styles from './AccordionItem.module.css';
 
 const AccordionItem = ({ title, isOpen, onToggle, children }) => {
@@ -13,7 +14,7 @@ const AccordionItem = ({ title, isOpen, onToggle, children }) => {
       >
         {title}
         <span className={styles.accordionIcon}>
-          {isOpen ? accordionClose : accordionOpen}
+          <img src={isOpen ? accordionClose : accordionOpen} alt='Иконка открытия и закрытия'></img>
         </span>
       </button>
       {isOpen && (
@@ -32,4 +33,4 @@ AccordionItem.propTypes = {
   children: PropTypes.node // Дочерние элементы теперь здесь
 };
 
-export default AccordionItem;
+export default AccordionItem; 

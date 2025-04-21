@@ -16,6 +16,7 @@ const Error404Page = lazy(() => import('../pages/404/404-page.jsx'));
 const Login = lazy(() => import('../pages/Auth/Login/Login.jsx'));
 const Register = lazy(() => import('../pages/Auth/Register/Register.jsx'));
 const Profile = lazy(() => import('../pages/Auth/Profile/Profile.jsx'));
+const EditProfile = lazy(() => import('../pages/Auth/Profile/EditProfile/EditProfile.jsx'));
 const VerifyEmail = lazy(() => import('../pages/Auth/VerifyEmail/VerifyEmail.jsx'));
 const ForgotPassword = lazy(() => import('../pages/Auth/ForgotPassword/ForgotPassword.jsx'));
 const ErrorBoundary = lazy(() => import('../pages/Auth/ErrorBoundary/ErrorBoundary.jsx'));
@@ -53,14 +54,10 @@ function AppRoutes() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/test-email" element={<TestEmail />} />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
+          {/* Профиль */}
+            <Route path="/profile" element={<PrivateRoute>  <Profile />  </PrivateRoute>}/> 
+            <Route path="/profile/edit" element={<PrivateRoute> <EditProfile/> </PrivateRoute>}/>
+            
 
           {/* Обработка ошибок */}
           <Route path="/404" element={<Error404Page />} />

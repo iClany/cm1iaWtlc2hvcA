@@ -1,6 +1,7 @@
 import Slider from '../../components/ui/swiper/Swiper.jsx';
 import CatalogBar from '../../components/ui/catalogBar/catalogBar.jsx';
-import YandexMaps from '../../components/ui/yandexMaps/yandexMaps.jsx'
+import YandexMaps from '../../components/ui/yandexMaps/yandexMaps.jsx';
+
 
 import homeStyles from './homeStyles.module.css'
 

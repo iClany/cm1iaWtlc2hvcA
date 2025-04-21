@@ -31,6 +31,9 @@ export default function TestEmail() {
           await axios.post(`${process.env.REACT_APP_API_URL}/test/send-email`, data);
           setStatus('Пользовательское письмо отправлено');
           break;
+        default:
+          setStatus('Неизвестный тип письма');
+          return;
       }
     } catch (error) {
       setStatus(`Ошибка: ${error.response?.data?.message || error.message}`);

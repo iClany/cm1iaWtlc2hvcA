@@ -1,18 +1,49 @@
-.div_container{
+.container {
     margin-top: 24px;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
 }
-.bar_items{
+
+.itemsWrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 24px;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
-.itemsWrapper{
+
+.buttonWrapper {
+    margin-top: 24px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    align-content: center;
-    gap: 24px;
-    align-self: stretch;
-    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+    
+    .buttonWrapper {
+        margin: 24px -12px 0;
+        width: calc(100% + 24px);
+    }
+}
+
+/* Планшеты */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .itemsWrapper {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Десктоп */
+@media (min-width: 1025px) {
+    .itemsWrapper {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
 }

@@ -8,30 +8,47 @@
     height: 100%;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: filter 0.3s ease;
 }
+.map.grayscale {
+    filter: grayscale(100%);
+}
+.instructionText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary);
+    color: var(--black);
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-family: Inter;
+    font-size: 14px;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    max-width: 80%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 @media only screen and (max-width: 768px) {
-    .overlayText {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(255, 208, 1, 0.8);
-        color: var(--black);
-        padding: 10px 15px;
-        border-radius: 8px;
-        font-family: "Inter", sans-serif;
-        font-size: 12px;
-        text-align: center;
-        z-index: 10;
-        pointer-events: none;
-      }
-      .grayscale {
-        filter: grayscale(100%);
-      }
+    .mapContainer {
+        height: 500px;
+    }
 }
 @media only screen and (min-width: 768px) {
-    .grayscale {
+    .mapContainer {
+        height: 500px;
+    }
+    .instructionText {
+        display: none;
+    }
+    .map.grayscale {
         filter: none;
-      }
+    }
+}
+@media only screen and (min-width: 992px) {
+    .mapContainer {
+        height: 500px;
+    }
 }

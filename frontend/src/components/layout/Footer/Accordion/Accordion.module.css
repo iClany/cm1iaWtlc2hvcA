@@ -47,6 +47,12 @@
   .accordion-content ul {
     padding-left: 20px;
   }
+  .accordionItem{
+    color: var(--black);
+    font-family: Multiround;
+    font-size: calc(0.95rem + -0.2vw);
+    padding: 2.5px 0px 2.5px calc(10px + -0.2vw);
+  }
   
   .accordion-content a {
     display: block;

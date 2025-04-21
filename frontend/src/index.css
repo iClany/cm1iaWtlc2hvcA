@@ -10,11 +10,12 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  transition: background 0.3s ease, color 0.3s ease;
+  /* transition: background 0.3s ease, color 0.3s ease; */
 }
 :root{
   --black: #212121;
   --primary: #FFD101;
+  --primaryDark: #f5c800;
   --no-active: #F4F4F4;
   --footer-color: #DDDDDD3D;
   --stroke: #ABABAB;

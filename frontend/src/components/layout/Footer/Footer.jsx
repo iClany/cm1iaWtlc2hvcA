@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './Accordion/Accordion.jsx';
-import styles from './Footer.module.css'; // Используем CSS Modules
+import styles from './Footer.module.css';
 
 import paynmentImage from '../../../assets/images/paynaments-info.svg';
 
@@ -33,7 +33,7 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.topFooter}>
+      <div className={styles.container}>
         <div className={styles.mobileAccordion}>
           <Accordion links={footerLinks} />
         </div>
@@ -86,15 +86,15 @@ export default function Footer() {
             {currentYear} &copy; RMBike.by - Веломагазин. Все права защищены.
           </p>
           <p>
-            Индивидуальный предприниматель Малахов Роман Вячеславович, УНП 491644446<br />
-            Регистрация - Республика Беларусь от 19 февраля 2024 года. Администрация Центрального района г.Гомеля
+            ИП Малахов Роман Вячеславович, УНП 491644446<br/>
+            Регистрация - Республика Беларусь от 19 февраля 2024 года.
+            Администрация Центрального района г.Гомеля
           </p>
         </div>
         <img 
           className={styles.paymentsImage} 
           alt='Платежная информация' 
           src={paynmentImage}
-          loading="lazy"
         />
       </div>
     </footer>

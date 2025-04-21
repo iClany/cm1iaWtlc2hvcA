@@ -1,20 +1,16 @@
 import React from 'react';
 import styles from './loadingSpinner.module.css';
 
-const LoadingSpinner = ({ size = 40, color = '#FFD101', className = '' }) => {
-  const spinnerStyle = {
-    width: `${size}px`,
-    height: `${size}px`,
-    borderColor: `${color} transparent ${color} ${color}`,
-  };
-
+const LoadingSpinner = () => {
   return (
-    <div className={`${styles.spinnerContainer} ${className}`}>
-      <div className={styles.spinner} style={spinnerStyle} aria-label="Загрузка">
-        <span className="sr-only">Загрузка...</span>
+    <div className={styles.spinnerContainer}>
+      <div className={styles.dotsContainer}>
+        <div className={styles.dot}></div>
+        <div className={styles.dot}></div>
+        <div className={styles.dot}></div>
       </div>
     </div>
   );
 };
 
-export default LoadingSpinner;
+export default LoadingSpinner; 
