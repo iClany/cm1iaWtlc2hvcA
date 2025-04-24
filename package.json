@@ -14,5 +14,9 @@
     "concurrently": "^8.2.2"
   },
   "author": "",
-  "license": "ISC"
-} 
+  "license": "ISC",
+  "dependencies": {
+    "ant-design": "^1.0.0",
+    "antd": "^5.24.8"
+  }
+}

@@ -41,9 +41,10 @@ export default function TestEmail() {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className={styles.container}>
+      
       <h1>Тестовая страница отправки email</h1>
       
       <div className={styles.formGroup}>

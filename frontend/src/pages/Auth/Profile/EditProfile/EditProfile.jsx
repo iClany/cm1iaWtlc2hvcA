@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../../../contexts/AuthContext';
+
 import styles from './EditProfile.module.css';
 
 export default function EditProfile() {
     const [loading] = useState(false);
-    const [ currentUser ] = useAuth()
+    const { currentUser } = useAuth();
     const navigate = useNavigate();
 
     return (

@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate, Link} from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../../contexts/AuthContext';
+import { orderHistoryIcon, userEditIcon } from 'components/assets/icons';
+import ProfileEditButton from './components/ProfileEditButton.jsx'
 import styles from './Profile.module.css';
+
 
 export default function Profile() {
   const [error, setError] = useState('');
@@ -10,6 +13,20 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const profileButtons = [
+    {
+      title: "Изменить персональные данные",
+      alt: "Иконка изменения персональных данных",
+      src: userEditIcon,
+      link: "/profile/edit"
+    },
+    {
+      title: "История заказов",
+      alt: "Иконка истории заказов",
+      src: orderHistoryIcon,
+      link: "/profile/order-history"
+    },
+  ];
 
   async function handleLogout() {
     try {
@@ -36,6 +53,18 @@ export default function Profile() {
       <div className={styles.profileContainer}>
         <div className={styles.profileCard}>
           <h2>Профиль</h2>
+
+          <div className={styles.buttons}>
+            {profileButtons.map((item, index) => (
+            <ProfileEditButton
+              key={index}
+              title={item.title}
+              img={item.src}
+              alt={item.alt}
+              link={item.link}
+            />
+            ))}
+          </div>
 
           <Link to='/profile/edit'/>
           {error && <div className={styles.errorMessage}>{error}</div>}
